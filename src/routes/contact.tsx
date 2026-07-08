@@ -17,11 +17,11 @@ export const Route = createFileRoute("/contact")({
 });
 
 const links = [
-  { label: "Email", value: () => socials.email, href: () => `mailto:${socials.email}` },
-  { label: "GitHub", value: () => socials.github.replace("https://", ""), href: () => socials.github },
-  { label: "LinkedIn", value: () => socials.linkedin.replace("https://", ""), href: () => socials.linkedin },
-  { label: "LeetCode", value: () => socials.leetcode.replace("https://", ""), href: () => socials.leetcode },
-  { label: "TryHackMe", value: () => socials.tryhackme.replace("https://", ""), href: () => socials.tryhackme },
+  { label: "Email", value: socials.email, href: `mailto:${socials.email}`, external: false },
+  { label: "GitHub", value: socials.github.replace("https://", ""), href: socials.github, external: true },
+  { label: "LinkedIn", value: socials.linkedin.replace("https://", ""), href: socials.linkedin, external: true },
+  { label: "LeetCode", value: socials.leetcode.replace("https://", ""), href: socials.leetcode, external: true },
+  { label: "TryHackMe", value: socials.tryhackme.replace("https://", ""), href: socials.tryhackme, external: true },
 ];
 
 function ContactPage() {
@@ -30,35 +30,31 @@ function ContactPage() {
       <PageHeader
         eyebrow="./contact"
         title="Contact"
-        description="Best way to reach me is email. I'm also active on the platforms below."
+        description="Email is the fastest. I'm also active on the platforms below."
       />
-      <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-        {links.map((l) => (
-          <a
-            key={l.label}
-            href={l.href()}
-            target={l.label === "Email" ? undefined : "_blank"}
-            rel="noreferrer"
-            className="panel panel-hover p-5 flex items-center justify-between gap-4"
-          >
-            <div>
-              <div className="font-mono text-[10px] uppercase tracking-widest text-primary">
-                {l.label}
-              </div>
-              <div className="mt-2 text-sm text-foreground font-mono truncate">
-                {l.value()}
-              </div>
-            </div>
-            <span className="font-mono text-xs text-muted-foreground">→</span>
-          </a>
-        ))}
-      </div>
-
-      <Panel className="mt-6">
-        <p className="text-sm text-muted-foreground">
-          For engineering opportunities, feel free to email directly with a
-          short description and I'll respond within a few days.
-        </p>
+      <Panel className="!p-0 overflow-hidden">
+        <ul className="divide-y divide-border">
+          {links.map((l) => (
+            <li key={l.label}>
+              <a
+                href={l.href}
+                target={l.external ? "_blank" : undefined}
+                rel={l.external ? "noreferrer" : undefined}
+                className="grid grid-cols-[80px_minmax(0,1fr)_auto] items-center gap-4 px-5 py-4 hover:bg-surface-2 transition-colors"
+              >
+                <span className="font-mono text-[11px] uppercase tracking-widest text-muted-foreground">
+                  {l.label}
+                </span>
+                <span className="font-mono text-[13px] text-foreground truncate">
+                  {l.value}
+                </span>
+                <span className="font-mono text-xs text-muted-foreground">
+                  {l.external ? "↗" : "→"}
+                </span>
+              </a>
+            </li>
+          ))}
+        </ul>
       </Panel>
     </Page>
   );

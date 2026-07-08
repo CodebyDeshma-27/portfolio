@@ -24,27 +24,28 @@ function ResumePage() {
     <Page>
       <PageHeader
         eyebrow="./resume"
-        title="Resume"
-        description="A summary of my education, experience, skills and achievements."
+        title="Professional Resume"
+        description="Education, experience, skills and achievements at a glance."
       />
 
       <div className="mb-8 flex flex-wrap gap-2 font-mono text-xs">
         <a
           href={socials.resumeUrl}
           download
-          className="rounded-md bg-primary px-4 py-2 text-primary-foreground hover:opacity-90 transition-opacity"
+          className="rounded-md border border-primary/40 bg-primary/10 px-3.5 py-2 text-primary hover:bg-primary/15 transition-colors"
         >
-          Download resume
+          Download PDF ↓
         </a>
         <a
           href={socials.resumeUrl}
           target="_blank"
           rel="noreferrer"
-          className="rounded-md border border-border bg-surface px-4 py-2 text-foreground hover:bg-surface-2 transition-colors"
+          className="rounded-md border border-border bg-surface px-3.5 py-2 text-foreground hover:bg-surface-2 transition-colors"
         >
-          Preview resume ↗
+          Preview ↗
         </a>
       </div>
+
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
         <Panel>
@@ -113,7 +114,7 @@ function ResumePage() {
                   {c.name}
                 </div>
                 <div className="mt-1 text-sm text-foreground/90">
-                  {c.items.join(", ")}
+                  {c.items.map((s) => s.name).join(", ")}
                 </div>
               </div>
             ))}

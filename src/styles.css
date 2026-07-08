@@ -41,44 +41,44 @@
   --color-ring: var(--ring);
 }
 
-/* Single dark palette. Charcoal background, muted cyan accent, calm greens. */
+/* GitHub / Linear inspired near-black palette. Cyan reserved for accents. */
 :root {
-  --radius: 0.625rem;
+  --radius: 0.5rem;
 
-  --background: oklch(0.17 0.008 240);
-  --foreground: oklch(0.955 0.005 240);
+  --background: oklch(0.155 0.006 250);
+  --foreground: oklch(0.955 0.004 250);
 
-  --surface: oklch(0.205 0.009 240);
-  --surface-2: oklch(0.235 0.010 240);
+  --surface: oklch(0.185 0.006 250);
+  --surface-2: oklch(0.215 0.007 250);
 
-  --card: oklch(0.205 0.009 240);
-  --card-foreground: oklch(0.955 0.005 240);
+  --card: oklch(0.185 0.006 250);
+  --card-foreground: oklch(0.955 0.004 250);
 
-  --popover: oklch(0.205 0.009 240);
-  --popover-foreground: oklch(0.955 0.005 240);
+  --popover: oklch(0.185 0.006 250);
+  --popover-foreground: oklch(0.955 0.004 250);
 
-  --primary: oklch(0.78 0.09 210);          /* muted cyan */
-  --primary-foreground: oklch(0.17 0.02 240);
+  --primary: oklch(0.82 0.10 205);          /* subtle cyan */
+  --primary-foreground: oklch(0.16 0.02 250);
 
-  --secondary: oklch(0.26 0.010 240);
-  --secondary-foreground: oklch(0.955 0.005 240);
+  --secondary: oklch(0.24 0.008 250);
+  --secondary-foreground: oklch(0.955 0.004 250);
 
-  --muted: oklch(0.245 0.008 240);
-  --muted-foreground: oklch(0.68 0.012 240);
+  --muted: oklch(0.22 0.006 250);
+  --muted-foreground: oklch(0.63 0.010 250);
 
-  --accent: oklch(0.78 0.09 210);
-  --accent-foreground: oklch(0.17 0.02 240);
+  --accent: oklch(0.82 0.10 205);
+  --accent-foreground: oklch(0.16 0.02 250);
 
-  --success: oklch(0.72 0.12 150);          /* calm green */
-  --success-foreground: oklch(0.17 0.02 240);
+  --success: oklch(0.74 0.13 150);
+  --success-foreground: oklch(0.16 0.02 250);
 
   --destructive: oklch(0.62 0.19 25);
-  --destructive-foreground: oklch(0.98 0.005 240);
+  --destructive-foreground: oklch(0.98 0.005 250);
 
-  --border: oklch(1 0 0 / 8%);
-  --border-strong: oklch(1 0 0 / 14%);
-  --input: oklch(1 0 0 / 12%);
-  --ring: oklch(0.78 0.09 210 / 60%);
+  --border: oklch(1 0 0 / 6%);
+  --border-strong: oklch(1 0 0 / 11%);
+  --input: oklch(1 0 0 / 10%);
+  --ring: oklch(0.82 0.10 205 / 55%);
 }
 
 .dark {
@@ -102,10 +102,6 @@
     background-color: var(--color-background);
     color: var(--color-foreground);
     font-family: var(--font-sans);
-    background-image:
-      radial-gradient(1200px 600px at 80% -10%, oklch(0.78 0.09 210 / 0.06), transparent 60%),
-      radial-gradient(900px 500px at -10% 10%, oklch(0.72 0.12 150 / 0.04), transparent 60%);
-    background-attachment: fixed;
   }
 
   code, kbd, pre, samp, .font-mono {
