@@ -114,7 +114,7 @@ function ResumePage() {
                   {c.name}
                 </div>
                 <div className="mt-1 text-sm text-foreground/90">
-                  {c.items.join(", ")}
+                  {c.items.map((s) => s.name).join(", ")}
                 </div>
               </div>
             ))}
