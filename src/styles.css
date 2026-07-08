@@ -102,10 +102,6 @@
     background-color: var(--color-background);
     color: var(--color-foreground);
     font-family: var(--font-sans);
-    background-image:
-      radial-gradient(1200px 600px at 80% -10%, oklch(0.78 0.09 210 / 0.06), transparent 60%),
-      radial-gradient(900px 500px at -10% 10%, oklch(0.72 0.12 150 / 0.04), transparent 60%);
-    background-attachment: fixed;
   }
 
   code, kbd, pre, samp, .font-mono {
