@@ -10,15 +10,15 @@ export function PageHeader({
   description?: ReactNode;
 }) {
   return (
-    <header className="mb-10 fade-in-up">
-      <div className="font-mono text-xs uppercase tracking-widest text-primary">
+    <header className="mb-8 fade-in-up">
+      <div className="font-mono text-[11px] uppercase tracking-widest text-primary">
         {eyebrow}
       </div>
-      <h1 className="mt-2 text-3xl sm:text-4xl font-semibold text-foreground">
+      <h1 className="mt-2 text-2xl sm:text-[26px] font-semibold text-foreground">
         {title}
       </h1>
       {description ? (
-        <p className="mt-3 max-w-2xl text-sm sm:text-base text-muted-foreground">
+        <p className="mt-2 max-w-2xl text-[13.5px] sm:text-sm text-muted-foreground">
           {description}
         </p>
       ) : null}
