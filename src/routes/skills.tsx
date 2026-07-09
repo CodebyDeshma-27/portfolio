@@ -44,7 +44,15 @@ const stackChips = [
 
 function SkillIcon({ skill, className }: { skill: Skill; className?: string }) {
   const [imgFailed, setImgFailed] = useState(false);
+  const imgRef = useRef<HTMLImageElement>(null);
   const LucideIcon = skill.icon ? lucideIconMap[skill.icon] : undefined;
+
+  useEffect(() => {
+    const img = imgRef.current;
+    if (img && img.complete && img.naturalWidth === 0) {
+      setImgFailed(true);
+    }
+  }, []);
 
   if (LucideIcon) {
     return <LucideIcon className={className} />;
@@ -62,7 +70,8 @@ function SkillIcon({ skill, className }: { skill: Skill; className?: string }) {
 
   return (
     <img
-      src={`https://cdn.simpleicons.org/${skill.slug}/ffffff`}
+      ref={imgRef}
+      src={`https://api.iconify.design/simple-icons/${skill.slug}.svg?color=ffffff`}
       alt={skill.name}
       loading="lazy"
       className={className}
