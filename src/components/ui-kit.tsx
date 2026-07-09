@@ -37,12 +37,14 @@ export function Page({ children }: { children: ReactNode }) {
 export function Panel({
   children,
   className = "",
+  style,
 }: {
   children: ReactNode;
   className?: string;
+  style?: React.CSSProperties;
 }) {
   return (
-    <div className={`panel p-5 sm:p-6 ${className}`}>{children}</div>
+    <div className={`panel p-5 sm:p-6 ${className}`} style={style}>{children}</div>
   );
 }
 
