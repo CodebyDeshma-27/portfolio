@@ -27,7 +27,7 @@ export const skillCategories: SkillCategory[] = [
       { name: "Linux", slug: "linux" },
       { name: "TryHackMe", slug: "tryhackme" },
       { name: "OWASP", slug: "owasp" },
-      { name: "Nmap", slug: "nmap" },
+      { name: "Nmap", icon: "ScanLine" },
       { name: "Wireshark", slug: "wireshark" },
       { name: "Burp Suite", slug: "burpsuite" },
       { name: "Network Security", icon: "ShieldCheck" },
