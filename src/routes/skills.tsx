@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { createFileRoute } from "@tanstack/react-router";
 import {
   BookOpen,
@@ -7,6 +7,7 @@ import {
   Fingerprint,
   GitBranch,
   Network,
+  ScanLine,
   ShieldCheck,
 } from "lucide-react";
 import { Page, PageHeader, Panel } from "@/components/ui-kit";
@@ -31,6 +32,7 @@ const lucideIconMap: Record<string, React.ComponentType<{ className?: string }>>
   ShieldCheck,
   GitBranch,
   Fingerprint,
+  ScanLine,
 };
 
 const stackChips = [
