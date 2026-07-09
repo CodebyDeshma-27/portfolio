@@ -1,49 +1,36 @@
-export type Skill = { name: string; slug: string };
+export type Skill = {
+  name: string;
+  slug?: string; // api.iconify.design/simple-icons/<slug>
+  icon?: string; // lucide-react icon name
+};
 
-export type SkillCategory = { name: string; items: Skill[] };
+export type SkillCategory = {
+  name: string;
+  items: Skill[];
+};
 
-// slug = simpleicons.org slug (used with https://cdn.simpleicons.org/<slug>)
 export const skillCategories: SkillCategory[] = [
-  {
-    name: "Programming",
-    items: [
-      { name: "JavaScript", slug: "javascript" },
-      { name: "TypeScript", slug: "typescript" },
-      { name: "Python", slug: "python" },
-      { name: "Java", slug: "openjdk" },
-      { name: "C", slug: "c" },
-      { name: "SQL", slug: "mysql" },
-      { name: "Bash", slug: "gnubash" },
-    ],
-  },
-  {
-    name: "Frontend",
-    items: [
-      { name: "React", slug: "react" },
-      { name: "Vite", slug: "vite" },
-      { name: "Tailwind CSS", slug: "tailwindcss" },
-      { name: "HTML5", slug: "html5" },
-      { name: "CSS3", slug: "css" },
-      { name: "Redux", slug: "redux" },
-    ],
-  },
   {
     name: "Backend",
     items: [
       { name: "Node.js", slug: "nodedotjs" },
-      { name: "Express", slug: "express" },
-      { name: "REST", slug: "openapiinitiative" },
-      { name: "JWT", slug: "jsonwebtokens" },
-      { name: "WebSockets", slug: "socketdotio" },
+      { name: "Express.js", slug: "express" },
+      { name: "Spring Boot", slug: "springboot" },
+      { name: "Flask", slug: "flask" },
+      { name: "FastAPI", slug: "fastapi" },
+      { name: "REST APIs", icon: "Network" },
     ],
   },
   {
-    name: "Databases",
+    name: "Cybersecurity",
     items: [
-      { name: "PostgreSQL", slug: "postgresql" },
-      { name: "MySQL", slug: "mysql" },
-      { name: "MongoDB", slug: "mongodb" },
-      { name: "Redis", slug: "redis" },
+      { name: "Linux", slug: "linux" },
+      { name: "TryHackMe", slug: "tryhackme" },
+      { name: "OWASP", slug: "owasp" },
+      { name: "Nmap", icon: "ScanLine" },
+      { name: "Wireshark", slug: "wireshark" },
+      { name: "Burp Suite", slug: "burpsuite" },
+      { name: "Network Security", icon: "ShieldCheck" },
     ],
   },
   {
@@ -52,45 +39,48 @@ export const skillCategories: SkillCategory[] = [
       { name: "AWS", slug: "amazonwebservices" },
       { name: "EC2", slug: "amazonec2" },
       { name: "S3", slug: "amazons3" },
-      { name: "Lambda", slug: "awslambda" },
-      { name: "Cloudflare", slug: "cloudflare" },
+      { name: "IAM", icon: "Fingerprint" },
     ],
   },
   {
     name: "DevOps",
     items: [
       { name: "Docker", slug: "docker" },
+      { name: "Kubernetes", slug: "kubernetes" },
       { name: "GitHub Actions", slug: "githubactions" },
-      { name: "Nginx", slug: "nginx" },
-      { name: "Linux", slug: "linux" },
+      { name: "CI/CD", icon: "GitBranch" },
     ],
   },
   {
-    name: "Operating Systems",
+    name: "Languages",
     items: [
-      { name: "Linux", slug: "linux" },
-      { name: "Kali Linux", slug: "kalilinux" },
-      { name: "Ubuntu", slug: "ubuntu" },
-      { name: "Windows", slug: "windows11" },
+      { name: "Python", slug: "python" },
+      { name: "Java", slug: "openjdk" },
+      { name: "JavaScript", slug: "javascript" },
+      { name: "TypeScript", slug: "typescript" },
+      { name: "SQL", slug: "mysql" },
+      { name: "C", slug: "c" },
+      { name: "Bash", slug: "gnubash" },
     ],
   },
   {
-    name: "Security",
+    name: "Databases",
     items: [
-      { name: "OWASP", slug: "owasp" },
-      { name: "Burp Suite", slug: "burpsuite" },
-      { name: "Nmap", slug: "nmap" },
-      { name: "Wireshark", slug: "wireshark" },
-      { name: "Metasploit", slug: "metasploit" },
+      { name: "MongoDB", slug: "mongodb" },
+      { name: "MySQL", slug: "mysql" },
+      { name: "PostgreSQL", slug: "postgresql" },
+      { name: "Neon PostgreSQL", slug: "neon" },
     ],
   },
   {
-    name: "Networking",
+    name: "Frontend",
     items: [
-      { name: "Cisco", slug: "cisco" },
-      { name: "OpenVPN", slug: "openvpn" },
-      { name: "Cloudflare", slug: "cloudflare" },
-      { name: "Let's Encrypt", slug: "letsencrypt" },
+      { name: "React", slug: "react" },
+      { name: "Next.js", slug: "nextdotjs" },
+      { name: "Tailwind CSS", slug: "tailwindcss" },
+      { name: "HTML5", slug: "html5" },
+      { name: "CSS3", slug: "css" },
+      { name: "Vite", slug: "vite" },
     ],
   },
   {
@@ -98,18 +88,32 @@ export const skillCategories: SkillCategory[] = [
     items: [
       { name: "Git", slug: "git" },
       { name: "GitHub", slug: "github" },
-      { name: "VS Code", slug: "vscodium" },
+      { name: "VS Code", slug: "visualstudiocode" },
       { name: "Postman", slug: "postman" },
-      { name: "Figma", slug: "figma" },
+      { name: "IntelliJ IDEA", slug: "intellijidea" },
+      { name: "PyCharm", slug: "pycharm" },
     ],
   },
   {
-    name: "Hands-on Platforms",
+    name: "AI Tools",
     items: [
-      { name: "TryHackMe", slug: "tryhackme" },
-      { name: "Hack The Box", slug: "hackthebox" },
-      { name: "LeetCode", slug: "leetcode" },
-      { name: "Kaggle", slug: "kaggle" },
+      { name: "ChatGPT", slug: "openai" },
+      { name: "Claude", slug: "anthropic" },
+      { name: "Gemini", slug: "google" },
+      { name: "Cursor", slug: "cursor" },
+      { name: "GitHub Copilot", slug: "githubcopilot" },
+      { name: "Ollama", slug: "ollama" },
+      { name: "Perplexity", slug: "perplexity" },
+    ],
+  },
+  {
+    name: "Deployment",
+    items: [
+      { name: "Vercel", slug: "vercel" },
+      { name: "Netlify", slug: "netlify" },
+      { name: "AWS", slug: "amazonwebservices" },
+      { name: "Render", slug: "render" },
+      { name: "GitHub Pages", slug: "github" },
     ],
   },
 ];
