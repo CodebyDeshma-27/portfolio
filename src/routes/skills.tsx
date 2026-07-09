@@ -71,7 +71,7 @@ function SkillIcon({ skill, className }: { skill: Skill; className?: string }) {
   return (
     <img
       ref={imgRef}
-      src={`https://api.iconify.design/simple-icons/${skill.slug}.svg?color=ffffff`}
+      src={`https://api.iconify.design/simple-icons/${skill.slug}.svg?color=%23ffffff`}
       alt={skill.name}
       loading="lazy"
       className={className}
