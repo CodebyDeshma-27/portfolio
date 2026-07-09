@@ -1,6 +1,6 @@
 export type Skill = {
   name: string;
-  slug?: string; // cdn.simpleicons.org/<slug>
+  slug?: string; // api.iconify.design/simple-icons/<slug>
   icon?: string; // lucide-react icon name
 };
 
