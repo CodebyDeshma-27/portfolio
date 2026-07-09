@@ -55,7 +55,7 @@ export const skillCategories: SkillCategory[] = [
     name: "Languages",
     items: [
       { name: "Python", slug: "python" },
-      { name: "Java", slug: "java" },
+      { name: "Java", slug: "openjdk" },
       { name: "JavaScript", slug: "javascript" },
       { name: "TypeScript", slug: "typescript" },
       { name: "SQL", slug: "mysql" },
