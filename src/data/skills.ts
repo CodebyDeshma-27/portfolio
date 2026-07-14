@@ -15,7 +15,6 @@ export const skillCategories: SkillCategory[] = [
     items: [
       { name: "Node.js", slug: "nodedotjs" },
       { name: "Express.js", slug: "express" },
-      { name: "Spring Boot", slug: "springboot" },
       { name: "Flask", slug: "flask" },
       { name: "FastAPI", slug: "fastapi" },
       { name: "REST APIs", icon: "Network" },
@@ -26,25 +25,17 @@ export const skillCategories: SkillCategory[] = [
     items: [
       { name: "Linux", slug: "linux" },
       { name: "TryHackMe", slug: "tryhackme" },
-      { name: "OWASP", slug: "owasp" },
       { name: "Nmap", icon: "ScanLine" },
       { name: "Wireshark", slug: "wireshark" },
-      { name: "Burp Suite", slug: "burpsuite" },
       { name: "Network Security", icon: "ShieldCheck" },
-    ],
-  },
-  {
-    name: "Cloud",
-    items: [
-      { name: "AWS", slug: "amazonwebservices" },
-      { name: "EC2", slug: "amazonec2" },
-      { name: "S3", slug: "amazons3" },
-      { name: "IAM", icon: "Fingerprint" },
     ],
   },
   {
     name: "DevOps",
     items: [
+      { name: "AWS", slug: "amazonwebservices" },
+      { name: "EC2", slug: "amazonec2" },
+      { name: "S3", slug: "amazons3" },
       { name: "Docker", slug: "docker" },
       { name: "Kubernetes", slug: "kubernetes" },
       { name: "GitHub Actions", slug: "githubactions" },
@@ -59,7 +50,6 @@ export const skillCategories: SkillCategory[] = [
       { name: "JavaScript", slug: "javascript" },
       { name: "TypeScript", slug: "typescript" },
       { name: "SQL", slug: "mysql" },
-      { name: "C", slug: "c" },
       { name: "Bash", slug: "gnubash" },
     ],
   },
@@ -76,7 +66,6 @@ export const skillCategories: SkillCategory[] = [
     name: "Frontend",
     items: [
       { name: "React", slug: "react" },
-      { name: "Next.js", slug: "nextdotjs" },
       { name: "Tailwind CSS", slug: "tailwindcss" },
       { name: "HTML5", slug: "html5" },
       { name: "CSS3", slug: "css" },
