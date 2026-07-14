@@ -4,24 +4,26 @@ export type Experience = {
   duration: string;
   location?: string;
   description: string;
-  responsibilities: string[];
+  highlights: string[];
+  tech: string[];
   certificate?: string | null;
 };
 
 export const experience: Experience[] = [
   {
-    role: "Software Engineering Intern",
-    company: "Confidential",
-    duration: "2025",
-    location: "Remote",
+    role: "Cybersecurity Research Intern",
+    company: "HTC Global Services",
+    duration: "July – August 2025",
+    location: "Guindy, Chennai",
     description:
-      "Contributed to production full stack features across the web platform, focusing on reliability and code quality.",
-    responsibilities: [
-      "Built and shipped React components used across authenticated dashboards.",
-      "Wrote REST endpoints and integrated them with the frontend.",
-      "Improved CI checks and reduced flaky test runs.",
-      "Participated in code reviews and internal design discussions.",
+      "Cybersecurity research internship focused on risk assessment frameworks, security evaluation methodologies, and structured technical documentation. Contributed to research discussions and produced IEEE-style deliverables under mentor guidance.",
+    highlights: [
+      "Analyzed 30+ IEEE cybersecurity research papers on risk assessment and security evaluation methodologies.",
+      "Prepared technical documentation and LaTeX-based research reports using Overleaf.",
+      "Presented findings to mentors and contributed to cybersecurity research discussions.",
+      "Strengthened understanding of secure system design and structured security research.",
     ],
+    tech: ["LaTeX", "Overleaf", "Risk Assessment", "IEEE Research", "Documentation"],
     certificate: null,
   },
 ];

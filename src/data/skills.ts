@@ -1,113 +1,120 @@
 export type Skill = {
   name: string;
   slug?: string; // cdn.simpleicons.org/<slug>
-  icon?: string; // lucide-react icon name
+  icon?: string;
+  group: SkillFilter;
 };
 
+export type SkillFilter =
+  | "Languages"
+  | "Backend"
+  | "Frontend"
+  | "Databases"
+  | "Cybersecurity"
+  | "Cloud & DevOps"
+  | "AI Tools"
+  | "Developer Tools";
+
 export type SkillCategory = {
-  name: string;
+  name: SkillFilter;
   items: Skill[];
 };
 
 export const skillCategories: SkillCategory[] = [
   {
-    name: "Backend",
-    items: [
-      { name: "Node.js", slug: "nodedotjs" },
-      { name: "Express.js", slug: "express" },
-      { name: "Flask", slug: "flask" },
-      { name: "FastAPI", slug: "fastapi" },
-      { name: "REST APIs", icon: "Network" },
-    ],
-  },
-  {
-    name: "Cybersecurity",
-    items: [
-      { name: "Linux", slug: "linux" },
-      { name: "TryHackMe", slug: "tryhackme" },
-      { name: "Nmap", icon: "ScanLine" },
-      { name: "Wireshark", slug: "wireshark" },
-      { name: "Network Security", icon: "ShieldCheck" },
-    ],
-  },
-  {
-    name: "Cloud",
-    items: [
-      { name: "AWS", slug: "amazonwebservices" },
-      { name: "EC2", slug: "amazonec2" },
-      { name: "S3", slug: "amazons3" },
-    ],
-  },
-  {
-    name: "DevOps",
-    items: [
-      { name: "Docker", slug: "docker" },
-      { name: "Kubernetes", slug: "kubernetes" },
-      { name: "GitHub Actions", slug: "githubactions" },
-      { name: "CI/CD", icon: "GitBranch" },
-    ],
-  },
-  {
     name: "Languages",
     items: [
-      { name: "Python", slug: "python" },
-      { name: "Java", slug: "openjdk" },
-      { name: "JavaScript", slug: "javascript" },
-      { name: "TypeScript", slug: "typescript" },
-      { name: "SQL", slug: "mysql" },
-      { name: "Bash", slug: "gnubash" },
+      { name: "Python", slug: "python", group: "Languages" },
+      { name: "Java", slug: "openjdk", group: "Languages" },
+      { name: "C++", slug: "cplusplus", group: "Languages" },
+      { name: "JavaScript", slug: "javascript", group: "Languages" },
+      { name: "TypeScript", slug: "typescript", group: "Languages" },
+      { name: "SQL", slug: "mysql", group: "Languages" },
+      { name: "Bash", slug: "gnubash", group: "Languages" },
     ],
   },
   {
-    name: "Databases",
+    name: "Backend",
     items: [
-      { name: "MongoDB", slug: "mongodb" },
-      { name: "MySQL", slug: "mysql" },
-      { name: "PostgreSQL", slug: "postgresql" },
-      { name: "Neon PostgreSQL", slug: "neon" },
+      { name: "Node.js", slug: "nodedotjs", group: "Backend" },
+      { name: "Express.js", slug: "express", group: "Backend" },
+      { name: "Flask", slug: "flask", group: "Backend" },
+      { name: "FastAPI", slug: "fastapi", group: "Backend" },
+      { name: "LangChain", slug: "langchain", group: "Backend" },
     ],
   },
   {
     name: "Frontend",
     items: [
-      { name: "React", slug: "react" },
-      { name: "Tailwind CSS", slug: "tailwindcss" },
-      { name: "HTML5", slug: "html5" },
-      { name: "CSS3", slug: "css" },
-      { name: "Vite", slug: "vite" },
+      { name: "React", slug: "react", group: "Frontend" },
+      { name: "Tailwind CSS", slug: "tailwindcss", group: "Frontend" },
+      { name: "HTML5", slug: "html5", group: "Frontend" },
+      { name: "CSS3", slug: "css", group: "Frontend" },
+      { name: "Vite", slug: "vite", group: "Frontend" },
     ],
   },
   {
-    name: "Developer Tools",
+    name: "Databases",
     items: [
-      { name: "Git", slug: "git" },
-      { name: "GitHub", slug: "github" },
-      { name: "VS Code", slug: "visualstudiocode" },
-      { name: "Postman", slug: "postman" },
-      { name: "IntelliJ IDEA", slug: "intellijidea" },
-      { name: "PyCharm", slug: "pycharm" },
+      { name: "MongoDB", slug: "mongodb", group: "Databases" },
+      { name: "MySQL", slug: "mysql", group: "Databases" },
+      { name: "PostgreSQL", slug: "postgresql", group: "Databases" },
+      { name: "Neon", slug: "neon", group: "Databases" },
+      { name: "SQLite", slug: "sqlite", group: "Databases" },
+    ],
+  },
+  {
+    name: "Cybersecurity",
+    items: [
+      { name: "Linux", slug: "linux", group: "Cybersecurity" },
+      { name: "TryHackMe", slug: "tryhackme", group: "Cybersecurity" },
+      { name: "Nmap", icon: "ScanLine", group: "Cybersecurity" },
+      { name: "Wireshark", slug: "wireshark", group: "Cybersecurity" },
+      { name: "Network Security", icon: "ShieldCheck", group: "Cybersecurity" },
+    ],
+  },
+  {
+    name: "Cloud & DevOps",
+    items: [
+      { name: "AWS", slug: "amazonwebservices", group: "Cloud & DevOps" },
+      { name: "Docker", slug: "docker", group: "Cloud & DevOps" },
+      { name: "Kubernetes", slug: "kubernetes", group: "Cloud & DevOps" },
+      { name: "GitHub Actions", slug: "githubactions", group: "Cloud & DevOps" },
+      { name: "CI/CD", icon: "GitBranch", group: "Cloud & DevOps" },
     ],
   },
   {
     name: "AI Tools",
     items: [
-      { name: "ChatGPT", slug: "openai" },
-      { name: "Claude", slug: "anthropic" },
-      { name: "Gemini", slug: "googlegemini" },
-      { name: "Cursor", slug: "cursor" },
-      { name: "GitHub Copilot", slug: "githubcopilot" },
-      { name: "Ollama", slug: "ollama" },
-      { name: "Perplexity", slug: "perplexity" },
+      { name: "ChatGPT", slug: "openai", group: "AI Tools" },
+      { name: "Claude", slug: "anthropic", group: "AI Tools" },
+      { name: "Gemini", slug: "googlegemini", group: "AI Tools" },
+      { name: "Cursor", slug: "cursor", group: "AI Tools" },
+      { name: "GitHub Copilot", slug: "githubcopilot", group: "AI Tools" },
+      { name: "Ollama", slug: "ollama", group: "AI Tools" },
     ],
   },
   {
-    name: "Deployment",
+    name: "Developer Tools",
     items: [
-      { name: "Vercel", slug: "vercel" },
-      { name: "Netlify", slug: "netlify" },
-      { name: "AWS", slug: "amazonwebservices" },
-      { name: "Render", slug: "render" },
-      { name: "GitHub Pages", slug: "github" },
+      { name: "Git", slug: "git", group: "Developer Tools" },
+      { name: "GitHub", slug: "github", group: "Developer Tools" },
+      { name: "VS Code", slug: "visualstudiocode", group: "Developer Tools" },
+      { name: "Postman", slug: "postman", group: "Developer Tools" },
+      { name: "IntelliJ IDEA", slug: "intellijidea", group: "Developer Tools" },
+      { name: "PyCharm", slug: "pycharm", group: "Developer Tools" },
     ],
   },
+];
+
+export const skillFilters: ("All" | SkillFilter)[] = [
+  "All",
+  "Languages",
+  "Backend",
+  "Frontend",
+  "Databases",
+  "Cybersecurity",
+  "Cloud & DevOps",
+  "AI Tools",
+  "Developer Tools",
 ];
