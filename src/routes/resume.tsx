@@ -6,7 +6,7 @@ export const Route = createFileRoute("/resume")({
   head: () => ({
     meta: [
       { title: "Resume — Deshma Udayakumar" },
-      { name: "description", content: "Professional resume — education, experience, skills, projects and achievements." },
+      { name: "description", content: "Professional resume — education, experience, skills, projects and research." },
       { property: "og:title", content: "Resume — Deshma Udayakumar" },
       { property: "og:description", content: "Professional resume." },
       { property: "og:url", content: "/resume" },
