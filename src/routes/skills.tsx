@@ -1,13 +1,8 @@
 import { useEffect, useRef, useState } from "react";
 import { createFileRoute } from "@tanstack/react-router";
-import {
-  GitBranch,
-  Network,
-  ScanLine,
-  ShieldCheck,
-} from "lucide-react";
+import { GitBranch, Network, ScanLine, ShieldCheck } from "lucide-react";
 import { Page, PageHeader, Panel } from "@/components/ui-kit";
-import { skillCategories, type Skill } from "@/data/skills";
+import { skillCategories, skillFilters, type Skill } from "@/data/skills";
 
 export const Route = createFileRoute("/skills")({
   head: () => ({
@@ -30,26 +25,10 @@ const lucideIconMap: Record<string, React.ComponentType<{ className?: string }>>
   ScanLine,
 };
 
-// Logos whose brand color is near-black — need a light container to remain visible.
 const darkLogos = new Set([
-  "github",
-  "githubactions",
-  "githubcopilot",
-  "vercel",
-  "openai",
-  "anthropic",
-  "cursor",
-  "express",
-  "flask",
-  "visualstudiocode",
-  "intellijidea",
-  "pycharm",
-  "render",
-  "amazonwebservices",
-  "amazonec2",
-  "amazons3",
-  "ollama",
-  "perplexity",
+  "github", "githubactions", "githubcopilot", "vercel", "openai", "anthropic",
+  "cursor", "express", "flask", "visualstudiocode", "intellijidea", "pycharm",
+  "render", "ollama", "perplexity", "langchain",
 ]);
 
 function SkillIcon({ skill }: { skill: Skill }) {
@@ -64,7 +43,7 @@ function SkillIcon({ skill }: { skill: Skill }) {
 
   if (LucideIcon) {
     return (
-      <div className="flex h-11 w-11 items-center justify-center rounded-lg bg-surface-2 transition-transform duration-200 group-hover:scale-110">
+      <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-surface-2 border border-border transition-transform duration-200 group-hover:scale-110">
         <LucideIcon className="h-6 w-6 text-primary" />
       </div>
     );
@@ -72,7 +51,7 @@ function SkillIcon({ skill }: { skill: Skill }) {
 
   if (imgFailed || !skill.slug) {
     return (
-      <div className="flex h-11 w-11 items-center justify-center rounded-lg bg-surface-2 font-mono text-[11px] text-foreground transition-transform duration-200 group-hover:scale-110">
+      <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-surface-2 border border-border font-mono text-[11px] text-foreground transition-transform duration-200 group-hover:scale-110">
         {skill.name.slice(0, 2).toUpperCase()}
       </div>
     );
@@ -80,8 +59,8 @@ function SkillIcon({ skill }: { skill: Skill }) {
 
   const needsLightBg = darkLogos.has(skill.slug);
   const containerClass = needsLightBg
-    ? "flex h-11 w-11 items-center justify-center rounded-lg bg-white/95 p-2 transition-transform duration-200 group-hover:scale-110"
-    : "flex h-11 w-11 items-center justify-center transition-transform duration-200 group-hover:scale-110";
+    ? "flex h-12 w-12 items-center justify-center rounded-xl bg-white p-2 transition-transform duration-200 group-hover:scale-110"
+    : "flex h-12 w-12 items-center justify-center transition-transform duration-200 group-hover:scale-110";
 
   return (
     <div className={containerClass}>
@@ -98,7 +77,6 @@ function SkillIcon({ skill }: { skill: Skill }) {
 }
 
 function SkillsPage() {
-  const filters = ["All", ...skillCategories.map((c) => c.name)];
   const [active, setActive] = useState<string>("All");
 
   const visible =
@@ -108,19 +86,20 @@ function SkillsPage() {
 
   return (
     <Page>
-      <PageHeader
-        eyebrow="./skills"
-        title="Skills"
-        description="Tools and technologies I use to build, secure, and ship software."
-      />
+      <div className="glow-strong">
+        <PageHeader
+          eyebrow="./skills"
+          title="Skills"
+          description="Tools and technologies I use to build, secure, and ship software."
+        />
+      </div>
 
-      {/* Filter tabs */}
       <section className="mb-8 fade-in-up">
         <div className="font-mono text-[10px] uppercase tracking-widest text-muted-foreground mb-3">
           filter
         </div>
         <div className="flex flex-wrap gap-2">
-          {filters.map((f) => {
+          {skillFilters.map((f) => {
             const isActive = f === active;
             return (
               <button
@@ -140,12 +119,11 @@ function SkillsPage() {
         </div>
       </section>
 
-      {/* Skill Categories */}
       <div key={active} className="grid grid-cols-1 md:grid-cols-2 gap-4">
         {visible.map((cat, i) => (
           <Panel
             key={cat.name}
-            className="!p-6 fade-in-up hover:border-primary/60 transition-all duration-200 hover:-translate-y-0.5"
+            className="!p-6 fade-in-up hover:border-primary/50 transition-all duration-200"
             style={{ animationDelay: `${i * 40}ms` }}
           >
             <div className="flex items-center gap-2 mb-5 pb-3 border-b border-border">
@@ -153,7 +131,7 @@ function SkillsPage() {
               <span className="font-mono text-[11px] uppercase tracking-widest text-foreground">
                 {cat.name}
               </span>
-              <span className="ml-auto font-mono text-[10px] text-muted-foreground/70">
+              <span className="ml-auto font-mono text-[10px] text-muted-foreground">
                 {String(cat.items.length).padStart(2, "0")}
               </span>
             </div>
@@ -165,14 +143,9 @@ function SkillsPage() {
                   className="group relative flex flex-col items-center gap-3 rounded-lg p-2"
                 >
                   <SkillIcon skill={s} />
-                  <span className="text-[11.5px] text-foreground/85 text-center leading-tight">
+                  <span className="text-[12px] text-foreground/90 text-center leading-tight font-mono">
                     {s.name}
                   </span>
-
-                  {/* Tooltip */}
-                  <div className="absolute -top-9 left-1/2 -translate-x-1/2 z-10 opacity-0 group-hover:opacity-100 transition-opacity duration-200 pointer-events-none whitespace-nowrap rounded-md border border-border bg-surface-2 px-2 py-1 font-mono text-[10.5px] text-foreground shadow-sm">
-                    {s.name}
-                  </div>
                 </div>
               ))}
             </div>

@@ -1,8 +1,7 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { Page, Panel, StatusDot } from "@/components/ui-kit";
 import { profile, socials, stats } from "@/data/socials";
-import { achievements } from "@/data/achievements";
-import { certificates } from "@/data/certificates";
+import avatar from "@/assets/avatar.jpg";
 
 export const Route = createFileRoute("/")({
   component: HomePage,
@@ -20,7 +19,7 @@ function YamlProfile() {
   );
 
   return (
-    <div className="panel overflow-hidden w-full sm:max-w-md">
+    <div className="panel overflow-hidden w-full max-w-2xl mx-auto">
       <div className="flex items-center gap-2 border-b border-border px-4 py-2">
         <span className="h-2.5 w-2.5 rounded-full bg-destructive/70" />
         <span className="h-2.5 w-2.5 rounded-full bg-success/60" />
@@ -57,35 +56,34 @@ function YamlProfile() {
 }
 
 function HomePage() {
-  const latestAchievement = achievements[0];
-  const latestCert = certificates[0];
-
   return (
     <Page>
       {/* Hero */}
-      <section className="grid grid-cols-1 lg:grid-cols-[1fr_auto] gap-10 lg:gap-14 items-start pt-2 pb-14">
+      <section className="glow-strong grid grid-cols-1 lg:grid-cols-[1.15fr_auto] gap-10 lg:gap-16 items-center pt-4 pb-16">
         <div className="fade-in-up min-w-0">
           <div className="flex items-center gap-2 font-mono text-xs text-muted-foreground">
             <StatusDot tone="success" />
             <span>available for opportunities</span>
           </div>
 
-          <h1 className="mt-5 text-3xl sm:text-4xl md:text-5xl font-semibold tracking-tight text-foreground">
-            {profile.name}
+          <h1 className="mt-5 text-4xl sm:text-5xl md:text-6xl font-semibold tracking-tight text-foreground leading-[1.05]">
+            {profile.name.split(" ")[0]}{" "}
+            <span className="gradient-text">Udayakumar</span>
           </h1>
 
-          <div className="mt-3 font-mono text-[13px] text-muted-foreground">
+          <div className="mt-4 font-mono text-[13.5px] text-primary/90">
             {profile.titles.join("  ·  ")}
           </div>
 
-          <p className="mt-5 max-w-xl text-[14.5px] leading-relaxed text-muted-foreground">
+          <p className="mt-6 max-w-xl text-[15px] leading-relaxed text-foreground/85">
             {profile.intro}
           </p>
 
-          <div className="mt-7 flex flex-wrap gap-2 font-mono text-xs">
+          <div className="mt-8 flex flex-wrap gap-2 font-mono text-xs">
             <a
               href={socials.resumeUrl}
-              className="rounded-md border border-primary/40 bg-primary/10 px-3.5 py-2 text-primary hover:bg-primary/15 transition-colors"
+              download
+              className="rounded-md border border-primary/40 bg-primary/10 px-4 py-2.5 text-primary hover:bg-primary/15 transition-colors"
             >
               Resume ↓
             </a>
@@ -93,7 +91,7 @@ function HomePage() {
               href={socials.github}
               target="_blank"
               rel="noreferrer"
-              className="rounded-md border border-border bg-surface px-3.5 py-2 text-foreground hover:bg-surface-2 transition-colors"
+              className="rounded-md border border-border bg-surface px-4 py-2.5 text-foreground hover:bg-surface-2 transition-colors"
             >
               GitHub ↗
             </a>
@@ -101,118 +99,61 @@ function HomePage() {
               href={socials.linkedin}
               target="_blank"
               rel="noreferrer"
-              className="rounded-md border border-border bg-surface px-3.5 py-2 text-foreground hover:bg-surface-2 transition-colors"
+              className="rounded-md border border-border bg-surface px-4 py-2.5 text-foreground hover:bg-surface-2 transition-colors"
             >
               LinkedIn ↗
             </a>
             <Link
               to="/contact"
-              className="rounded-md border border-border bg-surface px-3.5 py-2 text-foreground hover:bg-surface-2 transition-colors"
+              className="rounded-md border border-border bg-surface px-4 py-2.5 text-foreground hover:bg-surface-2 transition-colors"
             >
               Contact
             </Link>
           </div>
+
+          <div className="mt-10">
+            <YamlProfile />
+          </div>
         </div>
 
-        <YamlProfile />
+        {/* Avatar */}
+        <div className="fade-in-up flex justify-center lg:justify-end">
+          <div className="relative">
+            <div
+              aria-hidden
+              className="absolute -inset-6 rounded-full bg-gradient-to-tr from-primary/25 via-primary/10 to-transparent blur-2xl"
+            />
+            <div className="relative h-52 w-52 sm:h-64 sm:w-64 rounded-full overflow-hidden border border-primary/40 shadow-[0_0_40px_-10px_oklch(0.83_0.12_200_/_0.6)]">
+              <img
+                src={avatar}
+                alt="Deshma Udayakumar"
+                width={512}
+                height={512}
+                className="h-full w-full object-cover"
+              />
+            </div>
+            <div className="mt-4 text-center font-mono text-[11px] text-muted-foreground">
+              📍 {profile.location}
+            </div>
+          </div>
+        </div>
       </section>
 
       {/* Stats */}
-      <section className="border-t border-border pt-8">
+      <section className="border-t border-border pt-10">
         <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
           {stats.map((s) => (
-            <Panel key={s.label} className="!p-4">
-              <div className="font-mono text-[10px] uppercase tracking-widest text-muted-foreground">
+            <Panel key={s.label} className="!p-5 panel-hover">
+              <div className="font-mono text-[10px] uppercase tracking-widest text-primary">
                 {s.label}
               </div>
-              <div className="mt-2 text-2xl font-semibold text-foreground">
+              <div className="mt-2 text-3xl font-semibold text-foreground">
                 {s.value}
               </div>
             </Panel>
           ))}
         </div>
       </section>
-
-      {/* Current focus + latest achievement + latest cert */}
-      <section className="mt-10 grid grid-cols-1 lg:grid-cols-3 gap-3">
-        <Panel className="lg:col-span-1">
-          <div className="font-mono text-[10px] uppercase tracking-widest text-primary">
-            current focus
-          </div>
-          <p className="mt-3 text-[14px] leading-relaxed text-foreground">
-            Shipping production-ready full stack projects while going deeper on
-            security, cloud and DevOps fundamentals.
-          </p>
-          <div className="mt-4 flex flex-wrap gap-1.5 font-mono text-[11px] text-muted-foreground">
-            {profile.focus.map((f) => (
-              <span key={f} className="rounded-md border border-border bg-surface-2 px-2 py-1">
-                {f}
-              </span>
-            ))}
-          </div>
-        </Panel>
-
-        <Panel>
-          <div className="flex items-center justify-between">
-            <div className="font-mono text-[10px] uppercase tracking-widest text-primary">
-              latest achievement
-            </div>
-            <Link to="/achievements" className="font-mono text-[11px] text-muted-foreground hover:text-foreground">
-              all →
-            </Link>
-          </div>
-          {latestAchievement ? (
-            <div className="mt-3">
-              <div className="font-mono text-[11px] text-muted-foreground">
-                {latestAchievement.year} · {latestAchievement.type}
-              </div>
-              <div className="mt-1.5 text-[14px] font-medium text-foreground">
-                {latestAchievement.title}
-              </div>
-              <p className="mt-1.5 text-[13px] text-muted-foreground line-clamp-3">
-                {latestAchievement.description}
-              </p>
-            </div>
-          ) : (
-            <EmptyMini label="No entries yet." />
-          )}
-        </Panel>
-
-        <Panel>
-          <div className="flex items-center justify-between">
-            <div className="font-mono text-[10px] uppercase tracking-widest text-primary">
-              latest certification
-            </div>
-            <Link to="/certifications" className="font-mono text-[11px] text-muted-foreground hover:text-foreground">
-              all →
-            </Link>
-          </div>
-          {latestCert ? (
-            <div className="mt-3">
-              <div className="font-mono text-[11px] text-muted-foreground">
-                {latestCert.category} · {latestCert.date}
-              </div>
-              <div className="mt-1.5 text-[14px] font-medium text-foreground">
-                {latestCert.title}
-              </div>
-              <div className="mt-1 font-mono text-[11px] text-muted-foreground">
-                {latestCert.issuer}
-              </div>
-            </div>
-          ) : (
-            <EmptyMini label="Certificates coming soon." />
-          )}
-        </Panel>
-      </section>
     </Page>
-  );
-}
-
-function EmptyMini({ label }: { label: string }) {
-  return (
-    <div className="mt-3 flex items-center gap-2 font-mono text-[11px] text-muted-foreground">
-      <span className="h-1.5 w-1.5 rounded-full bg-muted-foreground/50" />
-      {label}
-    </div>
   );
 }

@@ -19,60 +19,84 @@ export const Route = createFileRoute("/experience")({
 function ExperiencePage() {
   return (
     <Page>
-      <PageHeader
-        eyebrow="./experience"
-        title="Experience"
-        description="Roles and internships in reverse chronological order."
-      />
-      <ol className="relative border-l border-border pl-6 space-y-8">
+      <div className="glow-strong">
+        <PageHeader
+          eyebrow="./experience"
+          title="Experience"
+          description="Roles and internships — presented as case studies rather than bullet-point resumes."
+        />
+      </div>
+
+      <div className="space-y-16">
         {experience.map((e, i) => (
-          <li key={i} className="relative">
-            <span
-              aria-hidden
-              className="absolute -left-[29px] top-1.5 h-2.5 w-2.5 rounded-full bg-primary ring-4 ring-background"
-            />
-            <div className="panel p-5 sm:p-6">
-              <div className="flex flex-wrap items-baseline justify-between gap-2">
-                <div>
-                  <h2 className="text-lg font-semibold text-foreground">
-                    {e.role}
-                  </h2>
-                  <div className="mt-0.5 font-mono text-xs text-muted-foreground">
-                    {e.company}
-                    {e.location ? ` · ${e.location}` : ""}
+          <article key={i} className="fade-in-up">
+            {/* Two-column head */}
+            <div className="grid grid-cols-1 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.4fr)] gap-8 lg:gap-12">
+              <div>
+                <div className="font-mono text-[10px] uppercase tracking-widest text-primary mb-3">
+                  {String(i + 1).padStart(2, "0")} · Internship
+                </div>
+                <h2 className="text-3xl sm:text-4xl font-semibold text-foreground tracking-tight leading-tight">
+                  {e.company}
+                </h2>
+                <div className="mt-4 text-[15px] text-foreground/90 font-medium">
+                  {e.role}
+                </div>
+                {e.location && (
+                  <div className="mt-1.5 font-mono text-[12px] text-muted-foreground">
+                    {e.location}
                   </div>
-                </div>
-                <span className="rounded-md border border-border bg-surface-2 px-2 py-0.5 font-mono text-[11px] text-muted-foreground">
+                )}
+                <div className="mt-3 inline-flex items-center rounded-md border border-border bg-surface px-2.5 py-1 font-mono text-[11px] text-primary">
                   {e.duration}
-                </span>
-              </div>
-              <p className="mt-4 text-[15px] leading-relaxed text-foreground">
-                {e.description}
-              </p>
-              <ul className="mt-4 space-y-1.5 text-sm text-muted-foreground">
-                {e.responsibilities.map((r, j) => (
-                  <li key={j} className="flex gap-2">
-                    <span className="text-primary mt-1">▸</span>
-                    <span>{r}</span>
-                  </li>
-                ))}
-              </ul>
-              {e.certificate ? (
-                <div className="mt-5">
-                  <a
-                    href={e.certificate}
-                    target="_blank"
-                    rel="noreferrer"
-                    className="inline-flex items-center gap-1 rounded-md border border-border bg-surface-2 px-3 py-1.5 font-mono text-xs text-foreground hover:bg-surface transition-colors"
-                  >
-                    View certificate ↗
-                  </a>
                 </div>
-              ) : null}
+              </div>
+
+              <div>
+                <p className="text-[15.5px] leading-relaxed text-foreground/85">
+                  {e.description}
+                </p>
+              </div>
             </div>
-          </li>
+
+            {/* Numbered highlights */}
+            <div className="mt-10 grid grid-cols-1 md:grid-cols-2 gap-4">
+              {e.highlights.map((h, j) => (
+                <div
+                  key={j}
+                  className="panel panel-hover p-5 sm:p-6 hover:border-primary/40"
+                >
+                  <div className="font-mono text-lg text-primary/80 font-semibold">
+                    {String(j + 1).padStart(2, "0")}
+                  </div>
+                  <p className="mt-2 text-[14.5px] leading-relaxed text-foreground/90">
+                    {h}
+                  </p>
+                </div>
+              ))}
+            </div>
+
+            {/* Tech tags */}
+            {e.tech.length > 0 && (
+              <div className="mt-10 pt-6 border-t border-border">
+                <div className="font-mono text-[10px] uppercase tracking-widest text-muted-foreground mb-3">
+                  stack & focus
+                </div>
+                <div className="flex flex-wrap gap-2">
+                  {e.tech.map((t) => (
+                    <span
+                      key={t}
+                      className="rounded-md border border-border bg-surface px-3 py-1.5 font-mono text-[12px] text-foreground/90"
+                    >
+                      {t}
+                    </span>
+                  ))}
+                </div>
+              </div>
+            )}
+          </article>
         ))}
-      </ol>
+      </div>
     </Page>
   );
 }
