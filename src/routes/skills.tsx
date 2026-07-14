@@ -1,10 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import { createFileRoute } from "@tanstack/react-router";
 import {
-  BookOpen,
-  Cloud,
-  Code2,
-  Fingerprint,
   GitBranch,
   Network,
   ScanLine,
@@ -31,60 +27,85 @@ const lucideIconMap: Record<string, React.ComponentType<{ className?: string }>>
   Network,
   ShieldCheck,
   GitBranch,
-  Fingerprint,
   ScanLine,
 };
 
-const stackChips = [
-  { label: "Backend Development", icon: Code2 },
-  { label: "Cybersecurity", icon: ShieldCheck },
-  { label: "Cloud & DevOps", icon: Cloud },
-  { label: "Continuous Learning", icon: BookOpen },
-];
+// Logos whose brand color is near-black — need a light container to remain visible.
+const darkLogos = new Set([
+  "github",
+  "githubactions",
+  "githubcopilot",
+  "vercel",
+  "openai",
+  "anthropic",
+  "cursor",
+  "express",
+  "flask",
+  "visualstudiocode",
+  "intellijidea",
+  "pycharm",
+  "render",
+  "amazonwebservices",
+  "amazonec2",
+  "amazons3",
+  "ollama",
+  "perplexity",
+]);
 
-function SkillIcon({ skill, className }: { skill: Skill; className?: string }) {
+function SkillIcon({ skill }: { skill: Skill }) {
   const [imgFailed, setImgFailed] = useState(false);
   const imgRef = useRef<HTMLImageElement>(null);
   const LucideIcon = skill.icon ? lucideIconMap[skill.icon] : undefined;
 
   useEffect(() => {
     const img = imgRef.current;
-    if (img && img.complete && img.naturalWidth === 0) {
-      setImgFailed(true);
-    }
+    if (img && img.complete && img.naturalWidth === 0) setImgFailed(true);
   }, []);
 
   if (LucideIcon) {
-    return <LucideIcon className={className} />;
+    return (
+      <div className="flex h-11 w-11 items-center justify-center rounded-lg bg-surface-2 transition-transform duration-200 group-hover:scale-110">
+        <LucideIcon className="h-6 w-6 text-primary" />
+      </div>
+    );
   }
 
   if (imgFailed || !skill.slug) {
     return (
-      <div
-        className={`flex items-center justify-center rounded-md bg-surface-2 font-mono text-[10px] text-foreground ${className}`}
-      >
+      <div className="flex h-11 w-11 items-center justify-center rounded-lg bg-surface-2 font-mono text-[11px] text-foreground transition-transform duration-200 group-hover:scale-110">
         {skill.name.slice(0, 2).toUpperCase()}
       </div>
     );
   }
 
-  // Logos whose brand color is near-black — force white on dark background.
-  const forceWhite = new Set(["github", "vercel", "openai", "anthropic", "cursor", "expressjs", "express", "flask", "githubactions"]);
-  const colorParam = forceWhite.has(skill.slug) ? "/white" : "";
+  const needsLightBg = darkLogos.has(skill.slug);
+  const containerClass = needsLightBg
+    ? "flex h-11 w-11 items-center justify-center rounded-lg bg-white/95 p-2 transition-transform duration-200 group-hover:scale-110"
+    : "flex h-11 w-11 items-center justify-center transition-transform duration-200 group-hover:scale-110";
 
   return (
-    <img
-      ref={imgRef}
-      src={`https://cdn.simpleicons.org/${skill.slug}${colorParam}`}
-      alt={skill.name}
-      loading="lazy"
-      className={className}
-      onError={() => setImgFailed(true)}
-    />
+    <div className={containerClass}>
+      <img
+        ref={imgRef}
+        src={`https://cdn.simpleicons.org/${skill.slug}`}
+        alt={skill.name}
+        loading="lazy"
+        className="h-full w-full object-contain"
+        onError={() => setImgFailed(true)}
+      />
+    </div>
   );
 }
 
 function SkillsPage() {
+  const filters = ["All", ...skillCategories.map((c) => c.name)];
+  const [active, setActive] = useState<string>("All");
+
+  const visible =
+    active === "All"
+      ? skillCategories
+      : skillCategories.filter((c) => c.name === active);
+
   return (
     <Page>
       <PageHeader
@@ -93,61 +114,63 @@ function SkillsPage() {
         description="Tools and technologies I use to build, secure, and ship software."
       />
 
-      {/* Engineering Stack */}
+      {/* Filter tabs */}
       <section className="mb-8 fade-in-up">
         <div className="font-mono text-[10px] uppercase tracking-widest text-muted-foreground mb-3">
-          engineering stack
+          filter
         </div>
         <div className="flex flex-wrap gap-2">
-          {stackChips.map((chip) => {
-            const Icon = chip.icon;
+          {filters.map((f) => {
+            const isActive = f === active;
             return (
-              <div
-                key={chip.label}
-                className="inline-flex items-center gap-2 rounded-md border border-border bg-surface px-3 py-2 text-sm text-foreground hover:border-primary/50 transition-colors"
+              <button
+                key={f}
+                type="button"
+                onClick={() => setActive(f)}
+                className={`rounded-md border px-3 py-1.5 font-mono text-[12px] transition-all duration-200 ${
+                  isActive
+                    ? "border-primary bg-primary/10 text-primary"
+                    : "border-border bg-surface text-muted-foreground hover:border-border-strong hover:text-foreground"
+                }`}
               >
-                <Icon className="h-4 w-4 text-primary" />
-                <span>{chip.label}</span>
-              </div>
+                {f}
+              </button>
             );
           })}
         </div>
       </section>
 
       {/* Skill Categories */}
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-        {skillCategories.map((cat, i) => (
+      <div key={active} className="grid grid-cols-1 md:grid-cols-2 gap-4">
+        {visible.map((cat, i) => (
           <Panel
             key={cat.name}
-            className="!p-5 fade-in-up"
-            style={{ animationDelay: `${i * 50}ms` }}
+            className="!p-6 fade-in-up hover:border-primary/60 transition-all duration-200 hover:-translate-y-0.5"
+            style={{ animationDelay: `${i * 40}ms` }}
           >
-            <div className="flex items-center gap-2 mb-4">
-              <span className="font-mono text-[10px] text-primary">&gt;_</span>
-              <span className="font-mono text-[10px] uppercase tracking-widest text-muted-foreground">
+            <div className="flex items-center gap-2 mb-5 pb-3 border-b border-border">
+              <span className="font-mono text-[11px] text-primary">&gt;_</span>
+              <span className="font-mono text-[11px] uppercase tracking-widest text-foreground">
                 {cat.name}
               </span>
-              <span className="ml-auto font-mono text-[10px] text-muted-foreground/60">
+              <span className="ml-auto font-mono text-[10px] text-muted-foreground/70">
                 {String(cat.items.length).padStart(2, "0")}
               </span>
             </div>
 
-            <div className="grid grid-cols-4 sm:grid-cols-5 gap-2">
+            <div className="grid grid-cols-3 sm:grid-cols-4 gap-x-3 gap-y-5">
               {cat.items.map((s) => (
                 <div
                   key={s.name}
-                  className="group relative flex flex-col items-center gap-2 rounded-md border border-transparent p-2 hover:border-primary hover:bg-surface-2 transition-all"
+                  className="group relative flex flex-col items-center gap-3 rounded-lg p-2"
                 >
-                  <SkillIcon
-                    skill={s}
-                    className="h-9 w-9 text-foreground/80 transition-transform group-hover:scale-110 group-hover:text-foreground"
-                  />
-                  <span className="font-mono text-[10px] text-muted-foreground group-hover:text-foreground text-center leading-tight">
+                  <SkillIcon skill={s} />
+                  <span className="text-[11.5px] text-foreground/85 text-center leading-tight">
                     {s.name}
                   </span>
 
                   {/* Tooltip */}
-                  <div className="absolute -top-8 left-1/2 -translate-x-1/2 z-10 opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none whitespace-nowrap rounded-md border border-border bg-surface-2 px-2 py-1 font-mono text-[10px] text-foreground shadow-sm">
+                  <div className="absolute -top-9 left-1/2 -translate-x-1/2 z-10 opacity-0 group-hover:opacity-100 transition-opacity duration-200 pointer-events-none whitespace-nowrap rounded-md border border-border bg-surface-2 px-2 py-1 font-mono text-[10.5px] text-foreground shadow-sm">
                     {s.name}
                   </div>
                 </div>

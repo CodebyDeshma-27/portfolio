@@ -1,6 +1,6 @@
 export type Skill = {
   name: string;
-  slug?: string; // api.iconify.design/simple-icons/<slug>
+  slug?: string; // cdn.simpleicons.org/<slug>
   icon?: string; // lucide-react icon name
 };
 
@@ -31,11 +31,16 @@ export const skillCategories: SkillCategory[] = [
     ],
   },
   {
-    name: "DevOps",
+    name: "Cloud",
     items: [
       { name: "AWS", slug: "amazonwebservices" },
       { name: "EC2", slug: "amazonec2" },
       { name: "S3", slug: "amazons3" },
+    ],
+  },
+  {
+    name: "DevOps",
+    items: [
       { name: "Docker", slug: "docker" },
       { name: "Kubernetes", slug: "kubernetes" },
       { name: "GitHub Actions", slug: "githubactions" },
