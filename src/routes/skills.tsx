@@ -68,10 +68,14 @@ function SkillIcon({ skill, className }: { skill: Skill; className?: string }) {
     );
   }
 
+  // Logos whose brand color is near-black — force white on dark background.
+  const forceWhite = new Set(["github", "vercel", "openai", "anthropic", "cursor", "expressjs", "express", "flask", "githubactions"]);
+  const colorParam = forceWhite.has(skill.slug) ? "/white" : "";
+
   return (
     <img
       ref={imgRef}
-      src={`https://api.iconify.design/simple-icons/${skill.slug}.svg?color=%23ffffff`}
+      src={`https://cdn.simpleicons.org/${skill.slug}${colorParam}`}
       alt={skill.name}
       loading="lazy"
       className={className}
