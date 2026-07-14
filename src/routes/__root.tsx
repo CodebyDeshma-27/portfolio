@@ -77,9 +77,9 @@ function ErrorComponent({ error, reset }: { error: Error; reset: () => void }) {
   );
 }
 
-const SITE_TITLE = "Deshma Udayakumar — Full Stack Developer & Aspiring Security Engineer";
+const SITE_TITLE = "Deshma Udayakumar — Cybersecurity & DevOps Engineer";
 const SITE_DESC =
-  "Portfolio of Deshma Udayakumar. Full stack engineering, security, cloud and DevOps.";
+  "Portfolio of Deshma Udayakumar — cybersecurity, DevOps, cloud security, and full-stack engineering projects, research and certifications.";
 
 export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()({
   head: () => ({
@@ -89,7 +89,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { title: SITE_TITLE },
       { name: "description", content: SITE_DESC },
       { name: "author", content: "Deshma Udayakumar" },
-      { name: "theme-color", content: "#161a1f" },
+      { name: "theme-color", content: "#0f1419" },
       { property: "og:title", content: SITE_TITLE },
       { property: "og:description", content: SITE_DESC },
       { property: "og:type", content: "website" },
@@ -97,14 +97,6 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { name: "twitter:card", content: "summary_large_image" },
       { name: "twitter:title", content: SITE_TITLE },
       { name: "twitter:description", content: SITE_DESC },
-      { title: "Lovable App" },
-      { property: "og:title", content: "Lovable App" },
-      { name: "twitter:title", content: "Lovable App" },
-      { name: "description", content: "A premium engineering portfolio showcasing full-stack, security, cloud, and DevOps expertise through projects and experience." },
-      { property: "og:description", content: "A premium engineering portfolio showcasing full-stack, security, cloud, and DevOps expertise through projects and experience." },
-      { name: "twitter:description", content: "A premium engineering portfolio showcasing full-stack, security, cloud, and DevOps expertise through projects and experience." },
-      { property: "og:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/f5981ec3-ecbe-4980-be73-f8fce5e3bdd4/id-preview-10af85a0--485cc1b4-2dc9-4a9f-9243-5c9720cbe907.lovable.app-1783513412941.png" },
-      { name: "twitter:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/f5981ec3-ecbe-4980-be73-f8fce5e3bdd4/id-preview-10af85a0--485cc1b4-2dc9-4a9f-9243-5c9720cbe907.lovable.app-1783513412941.png" },
     ],
     links: [
       { rel: "stylesheet", href: appCss },
