@@ -6,12 +6,12 @@ const links = [
   { to: "/about", label: "About" },
   { to: "/skills", label: "Skills" },
   { to: "/experience", label: "Experience" },
-  { to: "/projects", label: "Projects" },
   { to: "/certifications", label: "Certifications" },
-  { to: "/achievements", label: "Achievements" },
+  { to: "/projects", label: "Projects" },
   { to: "/resume", label: "Resume" },
+  { to: "/profiles", label: "Profiles" },
   { to: "/contact", label: "Contact" },
-];
+] as const;
 
 export function NavBar() {
   const [open, setOpen] = useState(false);
@@ -26,10 +26,10 @@ export function NavBar() {
 
   return (
     <header
-      className={`sticky top-0 z-40 backdrop-blur transition-colors ${
+      className={`sticky top-0 z-40 backdrop-blur-xl transition-colors ${
         scrolled
-          ? "bg-background/80 border-b border-border"
-          : "bg-background/50 border-b border-transparent"
+          ? "bg-background/85 border-b border-border"
+          : "bg-background/40 border-b border-transparent"
       }`}
     >
       <div className="mx-auto flex h-14 max-w-6xl items-center justify-between px-4 sm:px-6">
@@ -41,13 +41,13 @@ export function NavBar() {
           <span className="text-primary">~/</span>deshma
         </Link>
 
-        <nav className="hidden md:flex items-center gap-1 font-mono text-[13px]">
+        <nav className="hidden md:flex items-center gap-0.5 font-mono text-[12.5px]">
           {links.map((l) => (
             <Link
               key={l.to}
               to={l.to}
-              className="rounded-md px-3 py-1.5 text-muted-foreground transition-colors hover:text-foreground hover:bg-surface"
-              activeProps={{ className: "text-foreground bg-surface" }}
+              className="rounded-md px-2.5 py-1.5 text-muted-foreground transition-colors hover:text-foreground hover:bg-surface"
+              activeProps={{ className: "text-primary bg-surface" }}
               activeOptions={{ exact: l.to === "/" }}
             >
               {l.label}
@@ -74,7 +74,7 @@ export function NavBar() {
                 to={l.to}
                 onClick={() => setOpen(false)}
                 className="rounded-md px-3 py-2 text-muted-foreground hover:text-foreground hover:bg-surface"
-                activeProps={{ className: "text-foreground bg-surface" }}
+                activeProps={{ className: "text-primary bg-surface" }}
                 activeOptions={{ exact: l.to === "/" }}
               >
                 {l.label}

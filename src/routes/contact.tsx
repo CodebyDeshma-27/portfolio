@@ -1,12 +1,12 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { Page, PageHeader, Panel } from "@/components/ui-kit";
+import { Page, PageHeader } from "@/components/ui-kit";
 import { socials } from "@/data/socials";
 
 export const Route = createFileRoute("/contact")({
   head: () => ({
     meta: [
       { title: "Contact — Deshma Udayakumar" },
-      { name: "description", content: "Get in touch — email, GitHub, LinkedIn, LeetCode and TryHackMe." },
+      { name: "description", content: "Get in touch — email, GitHub, LinkedIn, X." },
       { property: "og:title", content: "Contact — Deshma Udayakumar" },
       { property: "og:description", content: "Get in touch." },
       { property: "og:url", content: "/contact" },
@@ -16,46 +16,68 @@ export const Route = createFileRoute("/contact")({
   component: ContactPage,
 });
 
-const links = [
-  { label: "Email", value: socials.email, href: `mailto:${socials.email}`, external: false },
-  { label: "GitHub", value: socials.github.replace("https://", ""), href: socials.github, external: true },
-  { label: "LinkedIn", value: socials.linkedin.replace("https://", ""), href: socials.linkedin, external: true },
-  { label: "LeetCode", value: socials.leetcode.replace("https://", ""), href: socials.leetcode, external: true },
-  { label: "TryHackMe", value: socials.tryhackme.replace("https://", ""), href: socials.tryhackme, external: true },
+type Channel = {
+  label: string;
+  slug: string;
+  value: string;
+  href: string;
+  darkLogo?: boolean;
+};
+
+const channels: Channel[] = [
+  { label: "Email", slug: "gmail", value: socials.email, href: `mailto:${socials.email}` },
+  { label: "GitHub", slug: "github", value: "CodebyDeshma-27", href: socials.github, darkLogo: true },
+  { label: "LinkedIn", slug: "linkedin", value: "deshma-udayakumar", href: socials.linkedin },
+  { label: "X (Twitter)", slug: "x", value: "@deshma27", href: socials.twitter, darkLogo: true },
 ];
 
 function ContactPage() {
   return (
     <Page>
-      <PageHeader
-        eyebrow="./contact"
-        title="Contact"
-        description="Email is the fastest. I'm also active on the platforms below."
-      />
-      <Panel className="!p-0 overflow-hidden">
-        <ul className="divide-y divide-border">
-          {links.map((l) => (
-            <li key={l.label}>
-              <a
-                href={l.href}
-                target={l.external ? "_blank" : undefined}
-                rel={l.external ? "noreferrer" : undefined}
-                className="grid grid-cols-[80px_minmax(0,1fr)_auto] items-center gap-4 px-5 py-4 hover:bg-surface-2 transition-colors"
-              >
-                <span className="font-mono text-[11px] uppercase tracking-widest text-muted-foreground">
-                  {l.label}
-                </span>
-                <span className="font-mono text-[13px] text-foreground truncate">
-                  {l.value}
-                </span>
-                <span className="font-mono text-xs text-muted-foreground">
-                  {l.external ? "↗" : "→"}
-                </span>
-              </a>
-            </li>
-          ))}
-        </ul>
-      </Panel>
+      <div className="glow-strong">
+        <PageHeader
+          eyebrow="./contact"
+          title="Let's Connect"
+          description="Email is the fastest way to reach me — I usually reply within a day."
+        />
+      </div>
+
+      <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+        {channels.map((c, i) => (
+          <a
+            key={c.label}
+            href={c.href}
+            target={c.href.startsWith("mailto:") ? undefined : "_blank"}
+            rel={c.href.startsWith("mailto:") ? undefined : "noreferrer"}
+            style={{ animationDelay: `${i * 50}ms` }}
+            className="panel panel-hover p-5 fade-in-up flex items-center gap-4 hover:border-primary/50 group"
+          >
+            <div
+              className={`flex h-12 w-12 items-center justify-center rounded-xl shrink-0 transition-transform duration-200 group-hover:scale-110 ${
+                c.darkLogo ? "bg-white p-2" : "bg-surface-2 p-2"
+              }`}
+            >
+              <img
+                src={`https://cdn.simpleicons.org/${c.slug}`}
+                alt={c.label}
+                className="h-full w-full object-contain"
+                loading="lazy"
+              />
+            </div>
+            <div className="min-w-0 flex-1">
+              <div className="font-mono text-[10px] uppercase tracking-widest text-primary">
+                {c.label}
+              </div>
+              <div className="mt-1 text-[14.5px] font-medium text-foreground truncate">
+                {c.value}
+              </div>
+            </div>
+            <span className="font-mono text-xs text-muted-foreground group-hover:text-primary transition-colors">
+              {c.href.startsWith("mailto:") ? "→" : "↗"}
+            </span>
+          </a>
+        ))}
+      </div>
     </Page>
   );
 }

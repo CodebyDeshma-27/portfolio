@@ -8,7 +8,7 @@ export const Route = createFileRoute("/certifications")({
   head: () => ({
     meta: [
       { title: "Certifications — Deshma Udayakumar" },
-      { name: "description", content: "Filterable gallery of certifications across security, cloud and more." },
+      { name: "description", content: "Filterable gallery of certifications — security, cloud, database, GenAI and more." },
       { property: "og:title", content: "Certifications — Deshma Udayakumar" },
       { property: "og:description", content: "Certifications gallery." },
       { property: "og:url", content: "/certifications" },
@@ -32,15 +32,23 @@ function CertificationsPage() {
     [filter],
   );
 
+  const counts = useMemo(() => {
+    const m: Record<string, number> = { All: certificates.length };
+    for (const c of certificates) m[c.category] = (m[c.category] ?? 0) + 1;
+    return m;
+  }, []);
+
   return (
     <Page>
-      <PageHeader
-        eyebrow="./certifications"
-        title="Certifications"
-        description="Filter by category. Click any card to view the full certificate."
-      />
+      <div className="glow-strong">
+        <PageHeader
+          eyebrow="./certifications"
+          title="Certifications"
+          description="Filter by category. Click any card to preview or download the full certificate."
+        />
+      </div>
 
-      <div className="mb-6 flex flex-wrap gap-2 font-mono text-xs">
+      <div className="mb-8 flex flex-wrap gap-2 font-mono text-xs">
         {(["All", ...certificateCategories] as Filter[]).map((c) => {
           const activeFilter = filter === c;
           return (
@@ -49,11 +57,14 @@ function CertificationsPage() {
               onClick={() => setFilter(c)}
               className={`rounded-md border px-3 py-1.5 transition-colors ${
                 activeFilter
-                  ? "border-primary bg-primary/10 text-foreground"
+                  ? "border-primary bg-primary/10 text-primary"
                   : "border-border bg-surface text-muted-foreground hover:text-foreground hover:bg-surface-2"
               }`}
             >
               {c}
+              <span className="ml-1.5 text-[10px] text-muted-foreground">
+                {counts[c] ?? 0}
+              </span>
             </button>
           );
         })}
@@ -66,26 +77,25 @@ function CertificationsPage() {
               empty
             </div>
             <p className="mt-3 max-w-md text-sm text-muted-foreground">
-              No certificates in this category yet. Add entries to{" "}
-              <code className="text-foreground">src/data/certificates.ts</code>{" "}
-              to populate the gallery.
+              No certificates in this category yet.
             </p>
           </div>
         </Panel>
       ) : (
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-          {filtered.map((c) => (
+        <div key={filter} className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+          {filtered.map((c, i) => (
             <button
               key={c.id}
               onClick={() => setActive(c)}
-              className="panel panel-hover text-left overflow-hidden"
+              style={{ animationDelay: `${i * 30}ms` }}
+              className="panel panel-hover text-left overflow-hidden fade-in-up hover:border-primary/40"
             >
-              <div className="aspect-[4/3] bg-surface-2 border-b border-border overflow-hidden">
+              <div className="aspect-[4/3] bg-white border-b border-border overflow-hidden">
                 <img
                   src={c.image}
                   alt={c.title}
                   loading="lazy"
-                  className="h-full w-full object-cover"
+                  className="h-full w-full object-contain"
                 />
               </div>
               <div className="p-4">
@@ -116,31 +126,48 @@ function CertificationsPage() {
             onClick={(e) => e.stopPropagation()}
             className="panel max-w-3xl w-full overflow-hidden"
           >
-            <div className="flex items-center justify-between border-b border-border p-4">
-              <div>
+            <div className="flex items-center justify-between border-b border-border p-4 gap-3">
+              <div className="min-w-0">
                 <div className="font-mono text-[10px] uppercase tracking-widest text-primary">
                   {active.category}
                 </div>
-                <div className="mt-1 text-sm font-semibold text-foreground">
+                <div className="mt-1 text-sm font-semibold text-foreground truncate">
                   {active.title}
                 </div>
                 <div className="font-mono text-[11px] text-muted-foreground">
                   {active.issuer} · {active.date}
                 </div>
               </div>
-              <button
-                onClick={() => setActive(null)}
-                aria-label="Close"
-                className="rounded-md border border-border bg-surface-2 px-3 py-1.5 font-mono text-xs text-muted-foreground hover:text-foreground"
-              >
-                close
-              </button>
+              <div className="flex items-center gap-2 font-mono text-xs shrink-0">
+                <a
+                  href={active.image}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="rounded-md border border-border bg-surface px-3 py-1.5 text-foreground hover:bg-surface-2"
+                >
+                  View ↗
+                </a>
+                <a
+                  href={active.image}
+                  download
+                  className="rounded-md border border-primary/40 bg-primary/10 px-3 py-1.5 text-primary hover:bg-primary/15"
+                >
+                  Download ↓
+                </a>
+                <button
+                  onClick={() => setActive(null)}
+                  aria-label="Close"
+                  className="rounded-md border border-border bg-surface-2 px-3 py-1.5 text-muted-foreground hover:text-foreground"
+                >
+                  close
+                </button>
+              </div>
             </div>
-            <div className="p-4 bg-surface-2">
+            <div className="p-4 bg-white">
               <img
                 src={active.image}
                 alt={active.title}
-                className="w-full h-auto rounded-md border border-border"
+                className="w-full h-auto rounded-md"
               />
             </div>
           </div>
