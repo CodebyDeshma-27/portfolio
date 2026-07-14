@@ -88,7 +88,7 @@ export const skillCategories: SkillCategory[] = [
     items: [
       { name: "ChatGPT", slug: "openai" },
       { name: "Claude", slug: "anthropic" },
-      { name: "Gemini", slug: "google" },
+      { name: "Gemini", slug: "googlegemini" },
       { name: "Cursor", slug: "cursor" },
       { name: "GitHub Copilot", slug: "githubcopilot" },
       { name: "Ollama", slug: "ollama" },
