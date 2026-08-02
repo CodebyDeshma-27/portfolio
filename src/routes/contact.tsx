@@ -70,12 +70,16 @@ function ContactPage() {
                 c.darkLogo ? "bg-white p-2" : "bg-surface-2 p-2"
               }`}
             >
-              <img
-                src={`https://cdn.simpleicons.org/${c.slug}`}
-                alt={c.label}
-                className="h-full w-full object-contain"
-                loading="lazy"
-              />
+              {c.inline === "linkedin" ? (
+                <LinkedInLogo />
+              ) : (
+                <img
+                  src={`https://cdn.simpleicons.org/${c.slug}`}
+                  alt={c.label}
+                  className="h-full w-full object-contain"
+                  loading="lazy"
+                />
+              )}
             </div>
             <div className="min-w-0 flex-1">
               <div className="font-mono text-[10px] uppercase tracking-widest text-primary">
