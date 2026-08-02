@@ -30,7 +30,7 @@ function ResumePage() {
       <div className="mb-8 flex flex-wrap gap-2 font-mono text-xs">
         <a
           href={socials.resumeUrl}
-          download="Deshma_U_Resume.pdf"
+          download="Deshma_Udayakumar_Resume.pdf"
           className="rounded-md border border-primary/40 bg-primary/10 px-4 py-2.5 text-primary hover:bg-primary/15 transition-colors"
         >
           Download PDF ↓
@@ -53,7 +53,7 @@ function ResumePage() {
             DESHMA UDAYAKUMAR
           </h2>
           <div className="mt-1.5 font-mono text-[13px] text-primary">
-            Cybersecurity and DevOps Enthusiast
+            Backend Developer &amp; Cybersecurity Enthusiast
           </div>
           <div className="mt-4 flex flex-wrap gap-x-5 gap-y-1.5 font-mono text-[12px] text-foreground/90">
             <a href={`mailto:${socials.email}`} className="hover:text-primary">{socials.email}</a>
@@ -70,7 +70,7 @@ function ResumePage() {
         <div className="p-6 sm:p-8 space-y-8">
           <Section title="Summary">
             <p className="text-[14.5px] leading-relaxed text-foreground/90">
-              Information Technology student interested in Cybersecurity and DevOps with hands-on experience in Python, Linux, Docker, and networking. Built projects related to attack surface monitoring, fraud detection, and AI chatbots using Flask and LangChain. Interested in network security, SOC operations, DevSecOps and cloud security.
+              Information Technology student with hands-on experience in backend app development using Python and Java, supported by practical knowledge of Docker, Linux, Git, and networking. Built projects in AI and cybersecurity through academic and internship experience, with a strong interest in backend engineering, cloud technologies, and scalable software development.
             </p>
           </Section>
 
@@ -84,13 +84,13 @@ function ResumePage() {
 
           <Section title="Technical Skills">
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-y-2 gap-x-6 text-[13.5px]">
-              <SkillRow label="Languages" value="Python, C++, Java (Basic)" />
-              <SkillRow label="Backend" value="Node.js, Express.js, Flask, FastAPI" />
-              <SkillRow label="Databases" value="MongoDB, MySQL, Neon PostgreSQL" />
+              <SkillRow label="Languages" value="Java, Python" />
+              <SkillRow label="Backend" value="Node.js, Flask, Spring Boot" />
+              <SkillRow label="Databases" value="MongoDB (NoSQL), MySQL" />
               <SkillRow label="Operating Systems" value="Linux (CLI)" />
-              <SkillRow label="DevOps & Containers" value="Docker, Kubernetes" />
-              <SkillRow label="Version Control" value="Git, GitHub" />
-              <SkillRow label="Networking" value="Computer networking concepts" />
+              <SkillRow label="DevOps & Containers" value="Docker, Kubernetes (Basics)" />
+              <SkillRow label="Version Control" value="Git, GitHub, GitLab" />
+              <SkillRow label="Networking" value="TCP/IP, OSI Model, DNS, HTTP/HTTPS, Addressing & Routing" />
               <SkillRow label="Hands-on Labs" value="TryHackMe" />
             </div>
           </Section>
@@ -139,7 +139,7 @@ function ResumePage() {
           <Section title="Achievements, Hackathons & Research">
             <ul className="space-y-1.5 text-[13.5px] text-foreground/85">
               <Bullet>Secured 2nd place in E-Cube Paper Presentation on Blockchain.</Bullet>
-              <Bullet>Participated in 7 hackathons with hands-on rapid prototyping and team-based development.</Bullet>
+              <Bullet>Participated in 9 hackathons with hands-on rapid prototyping and team-based development.</Bullet>
               <Bullet>Ranked Top 5 among 25 teams in HackIntym (30-hour hackathon, MSEC).</Bullet>
               <Bullet>Finalist in VIT Hack-A-Cure — built an AI medical chatbot using RAG and vector databases.</Bullet>
               <Bullet>Presented a research paper at HICET International Conference 2026 — AI-based IDS with 97%+ accuracy and &lt;200 ms latency.</Bullet>
@@ -150,7 +150,6 @@ function ResumePage() {
             <ul className="space-y-1.5 text-[13.5px] text-foreground/85">
               <Bullet>Palo Alto Networks — Cloud Security, Security Operations, Network Security.</Bullet>
               <Bullet>AWS Skill Builder — Web Application Firewall (WAF), Deploying Serverless Applications.</Bullet>
-              <Bullet>Pursuing Fortinet NSE 1 — network security fundamentals and threat awareness.</Bullet>
             </ul>
           </Section>
         </div>

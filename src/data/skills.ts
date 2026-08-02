@@ -26,7 +26,7 @@ export const skillCategories: SkillCategory[] = [
     items: [
       { name: "Python", slug: "python", group: "Languages" },
       { name: "Java", slug: "openjdk", group: "Languages" },
-      { name: "C++", slug: "cplusplus", group: "Languages" },
+      
       { name: "JavaScript", slug: "javascript", group: "Languages" },
       { name: "TypeScript", slug: "typescript", group: "Languages" },
       { name: "SQL", slug: "mysql", group: "Languages" },
@@ -40,7 +40,7 @@ export const skillCategories: SkillCategory[] = [
       { name: "Express.js", slug: "express", group: "Backend" },
       { name: "Flask", slug: "flask", group: "Backend" },
       { name: "FastAPI", slug: "fastapi", group: "Backend" },
-      { name: "LangChain", slug: "langchain", group: "Backend" },
+      
     ],
   },
   {
@@ -58,7 +58,7 @@ export const skillCategories: SkillCategory[] = [
     items: [
       { name: "MongoDB", slug: "mongodb", group: "Databases" },
       { name: "MySQL", slug: "mysql", group: "Databases" },
-      { name: "PostgreSQL", slug: "postgresql", group: "Databases" },
+      
       { name: "Neon", slug: "neon", group: "Databases" },
       { name: "SQLite", slug: "sqlite", group: "Databases" },
     ],
@@ -70,13 +70,13 @@ export const skillCategories: SkillCategory[] = [
       { name: "TryHackMe", slug: "tryhackme", group: "Cybersecurity" },
       { name: "Nmap", icon: "ScanLine", group: "Cybersecurity" },
       { name: "Wireshark", slug: "wireshark", group: "Cybersecurity" },
-      { name: "Network Security", icon: "ShieldCheck", group: "Cybersecurity" },
+      
     ],
   },
   {
     name: "Cloud & DevOps",
     items: [
-      { name: "AWS", slug: "amazonwebservices", group: "Cloud & DevOps" },
+      
       { name: "Docker", slug: "docker", group: "Cloud & DevOps" },
       { name: "Kubernetes", slug: "kubernetes", group: "Cloud & DevOps" },
       { name: "GitHub Actions", slug: "githubactions", group: "Cloud & DevOps" },
