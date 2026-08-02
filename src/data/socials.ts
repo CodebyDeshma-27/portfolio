@@ -1,4 +1,4 @@
-import resumeAsset from "@/assets/Deshma_U_Resume.pdf.asset.json";
+import resumeAsset from "@/assets/Deshma_Udayakumar_Resume.pdf.asset.json";
 
 export const socials = {
   email: "deshma2027@gmail.com",
@@ -15,7 +15,7 @@ export const socials = {
 export type Stat = { label: string; value: string };
 
 export const stats: Stat[] = [
-  { label: "Hackathons", value: "7+" },
+  { label: "Hackathons", value: "9" },
   { label: "Certificates", value: "23" },
   { label: "Internship", value: "01" },
   { label: "CGPA", value: "8.68" },
