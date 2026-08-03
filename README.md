@@ -4,7 +4,7 @@ Welcome to my personal portfolio website! This portfolio showcases my projects, 
 
 ## 🌐 Live Website
 
-> Portfolio Link: *(Add your deployed URL here)*
+> Portfolio Link: deshma-portfolio.vercel.app
 
 ## 📫 Connect With Me
 
