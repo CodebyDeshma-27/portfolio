@@ -87,7 +87,7 @@ function ErrorComponent({
   );
 }
 
-const SITE_TITLE = "Deshma Udayakumar — Backend Developer & Cybersecurity Enthusiast";
+const SITE_TITLE = "Deshma Udayakumar";
 
 const SITE_DESC =
   "Portfolio of Deshma Udayakumar showcasing backend development, AI/ML, cybersecurity projects, certifications, research, and technical experience.";
