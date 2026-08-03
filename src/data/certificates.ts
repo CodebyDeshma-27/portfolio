@@ -26,17 +26,9 @@ export type Certificate = {
   image: string;
 };
 
-// Security
 
-// Cloud
 
-// Database
 
-// GenAI
-
-// Hackathons
-
-// Internship
 
 export const certificates: Certificate[] = [
   // Security
