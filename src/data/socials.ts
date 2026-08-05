@@ -15,8 +15,8 @@ export const socials = {
 export type Stat = { label: string; value: string };
 
 export const stats: Stat[] = [
-  { label: "Hackathons", value: "9" },
-  { label: "Certificates", value: "23" },
+  { label: "Hackathons", value: "10" },
+  { label: "Certificates", value: "24" },
   { label: "Internship", value: "01" },
   { label: "CGPA", value: "8.68" },
 ];
