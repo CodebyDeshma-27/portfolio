@@ -32,7 +32,8 @@ export type Certificate = {
 
 export const certificates: Certificate[] = [
   // Security
-  { id: "sec-cloud", category: "Security", title: "Cloud Security", issuer: "Palo Alto Networks", date: "2025", image: "/certificates/Security__Cloud_security.png" },
+  { id: "sec-cloud", category: "Security", title: "Cloud Security Fundamentals", issuer: "Palo Alto Networks", date: "October 2025", image: "/certificates/Security__Cloud_security.png" },
+  { id: "sec-fundamentals", category: "Security", title: "Cybersecurity Fundamentals", issuer: "Palo Alto Networks", date: "October 2025", image: "/certificates/Security__Cybersecurity_Fundamentals.png" },
   { id: "sec-network", category: "Security", title: "Network Security", issuer: "Palo Alto Networks", date: "2025", image: "/certificates/Security__Network_security.png" },
   { id: "sec-ops", category: "Security", title: "Security Operations", issuer: "Palo Alto Networks", date: "2025", image: "/certificates/Security__Security_Operations.png" },
 
