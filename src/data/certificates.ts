@@ -61,6 +61,7 @@ export const certificates: Certificate[] = [
   { id: "hk-tata", category: "Hackathons", title: "Hackathon Participation", issuer: "Tata Elxsi", date: "2024", image: "/certificates/Hackathons__Tata_Elxsi.png" },
   { id: "hk-think", category: "Hackathons", title: "Thinkathon", issuer: "Inter-College Innovation Challenge", date: "2024", image: "/certificates/Hackathons__Thinkathon.png" },
   { id: "hk-vit", category: "Hackathons", title: "VIT Hack-A-Cure — Finalist", issuer: "VIT University", date: "2025", image: "/certificates/Hackathons__VIT.png" },
+  { id: "hk-gappy-ai", category: "Hackathons", title: "Ship to Get Hired — Gappy AI Hackathon", issuer: "Gappy AI / Unstop", date: "2025", image: "/certificates/Hackathons__Gappy_AI_Unstop.png" },
 
   // Internship
   { id: "in-htc", category: "Internship", title: "Cybersecurity Research Internship", issuer: "HTC Global Services", date: "Aug 2025", image: "/certificates/Internship__HTC_Intern_completion.jpg" },
